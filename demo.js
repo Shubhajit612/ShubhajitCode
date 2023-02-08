@@ -1,26 +1,19 @@
-// var items = document.getElementsByClassName('list-group-item');
-// console.log(items);
-// console.log(items[1]);
+// var item = document.getElementsByClassName('list-group-item');
 
-// items[1].textContent = "Hello Brother..!";
+// console.log(item[1]);
 
-// items[2].style.backgroundColor = "green";
+// item[1].style.backgroundColor = "Green";
 
-// for(let i =0 ;i<items.length;i++){
-//     items[i].style.fontWeight = "bold";
-// }
+// item[2].style.display = "none";
 
-//queryselector
 
-var p = document.getElementsByClassName('list2');
+// // queryselector
 
-console.log(p);
+var p = document.querySelectorAll('.list-group-item');
+p[1].style.color = "green";
 
-p[0].textContent = "Hello Shubhajit..!!";
-p[0].style.fontWeight = 'bold';
+var odd = document.querySelectorAll('li:nth-child(odd)');
 
-var v = document.getElementsByTagName("li");
-
-console.log(v);
-
-v[4].style.backgroundColor = "Yellow";
+for(let i=0 ;i<odd.length;i++){
+    odd[i].style.backgroundColor = "green";
+}
