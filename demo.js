@@ -1,100 +1,70 @@
-// var itemList = document.querySelector('#items');
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
 
-// //parent Element
-// // console.log(itemList.parentElement);
+form.addEventListener('submit',addItem);
 
-// itemList.parentElement.style.backgroundColor = "#f4f4f4";
-
-// // console.log(itemList.parentElement.parentElement.parentElement);
-
-// //child Element
-// // console.log(itemList.childNodes);
-
-// // console.log(itemList.children[1]);
-
-// // itemList.children[1].style.backgroundColor = "Yellow";
-
-// // last child 
-
-// // console.log(itemList.lastChild);
-// // itemList.lastChild.textContent = "Hey";
-
-// //lastChildElement
-
-// // itemList.lastElementChild.textContent = "Hello Shubhajit..!!";
+//Delete event
+itemList.addEventListener('click',removeItem);
 
 
-// //first Child
+//Add Item
 
-// // console.log(itemList.firstChild);
+function addItem(e){
 
-// // itemList.firstChild.textContent = "Hello..!!";
+    e.preventDefault();
 
-// //firstChild Element
-// // itemList.firstElementChild.style.color = "red";
+    //get input value
 
-// //next sibling
-// // console.log(itemList.nextSibling);
+    var newItem = document.getElementById('item').value;
 
-// //next Element sibling
+    //create new li element
 
-// // console.log(itemList.nextElementSibling);
-// // itemList.nextElementSibling.innerHTML ="Hey Brother";
+    var li = document.createElement('li');
+    //add class
 
+    li.className = 'list-group-item';
 
-// // previouse sibling
-// // console.log(itemList.previousSibling);
+    // console.log(li);
 
-// //previouse element sibling
-// // console.log(itemList.previousElementSibling);
-// // itemList.previousElementSibling.style.color = "blue";
+    //add text with input value
 
+    li.appendChild(document.createTextNode(newItem));
 
+    //create del button element
+    var deleteBtn = document.createElement('button');
 
+    deleteBtn.className = "btn btn-danger btn-sm float-right delete";
 
-// //create element
+    //appned text node
+    deleteBtn.appendChild(document.createTextNode('X'));
 
-// // create a div 
+    //Append button to li
+    li.appendChild(deleteBtn);
 
-var newDiv = document.createElement('div');
+    //Edit button
+    var editButton = document.createElement('button');
 
-newDiv.className = 'heyy'; //add class
+    //add class name
+    editButton.className ="btn btn-success btn-sm float-right edit";
 
-newDiv.id = "hello1";
+    //append text node
 
-// //Add attr
-newDiv.setAttribute('title','Hello Div');
+    editButton.appendChild(document.createTextNode('edit'));
 
-// //Create text node
+    //append edit button
 
-var newDivText = document.createTextNode('HEllo ');
+    li.appendChild(editButton);
 
-// //Add text to div
+    itemList.appendChild(li);
+}
 
-newDiv.appendChild(newDivText);
+//Remove item
 
-
-var container = document.querySelector('header .container');
-
-var h1 = document.querySelector('header h1');
-
-// console.log(newDiv);
-
-newDiv.style.fontSize = "30px";
-container.insertBefore(newDiv, h1);
-
-
-//Assignment 2
-
-// creating div 
-
-
-var parentNode = document.getElementById('items');
-
-console.log(parentNode);
-
-parentNode.innerHTML = '<li class="list-group-item">Item 1</li> <li class="list-group-item">Item 2</li><li class="list-group-item">Item 3</li><li class="list-group-item">Item 4</li>'
-
-parentNode.innerHTML = '<li>HEllo</li>' + parentNode.innerHTML;
-
-
+function removeItem(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you Sure?')){
+            var li = e.target.parentElement;
+            itemList.removeChild(li);
+        }
+    }
+}
