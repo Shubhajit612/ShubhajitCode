@@ -1,22 +1,22 @@
-var name1 = document.getElementById('name');
+const myForm = document.getElementById('my-form');
 
-var myForm = document.getElementById('my-form');
+const myname = document.getElementById('name');
 
-// console.log(name1);
+const myemail = document.getElementById('email');
 
-myForm.addEventListener('submit',clickme);
+myForm.addEventListener('submit',onSubmit);
 
-function clickme(e){
+function onSubmit(e){
 
     e.preventDefault();
 
-    console.log(name1.value);
+    const name = myname.value;
+    const email = myemail.value;
 
-    localStorage.setItem('userDetails',name1.value);
+    const myObj = {
+       name,
+       email
+    };
 
-
+    localStorage.setItem('userDetails',JSON.stringify(myObj));;
 }
-
-var r = localStorage.getItem('userDetails');
-
-console.log(r);
