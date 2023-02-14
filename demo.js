@@ -18,5 +18,14 @@ function onSubmit(e){
        email
     };
 
-    localStorage.setItem('userDetails',JSON.stringify(myObj));;
+    localStorage.setItem('userDetails',JSON.stringify(myObj));
+
+    showUserOnScreen(myObj);
+}
+
+function showUserOnScreen(myObj){
+    const parentEle = document.getElementById('users');
+    const childEle = document.createElement('li');
+    childEle.textContent = myObj.name + " - " + myObj.email;
+    parentEle.appendChild(childEle);
 }
