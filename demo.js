@@ -26,6 +26,16 @@ function onSubmit(e){
 function showUserOnScreen(myObj){
     const parentEle = document.getElementById('users');
     const childEle = document.createElement('li');
+    const deleteChild = document.createElement('input');
+    deleteChild.type = "button";
+    deleteChild.value = "delete";
+
+    deleteChild.onclick = () =>{
+        localStorage.removeItem(myObj.email);
+        parentEle.removeChild(childEle);
+    }
     childEle.textContent = myObj.name + " - " + myObj.email;
+    childEle.appendChild(deleteChild);
     parentEle.appendChild(childEle);
+    
 }
