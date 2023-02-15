@@ -18,7 +18,7 @@ function onSubmit(e){
        email
     };
 
-    localStorage.setItem('userDetails',JSON.stringify(myObj));
+    localStorage.setItem(myObj.email,JSON.stringify(myObj));
 
     showUserOnScreen(myObj);
 }
@@ -30,12 +30,28 @@ function showUserOnScreen(myObj){
     deleteChild.type = "button";
     deleteChild.value = "delete";
 
+    //edit button
+    const editChild = document.createElement('input');
+    editChild.type = 'button';
+    editChild.value = 'edit';
+
+    editChild.onclick = () =>{
+        localStorage.removeItem(myObj.email);
+        parentEle.removeChild(childEle);
+
+        document.getElementById('name').value = myObj.name;
+        document.getElementById('email').value = myObj.email;
+    }
+
+
+
     deleteChild.onclick = () =>{
         localStorage.removeItem(myObj.email);
         parentEle.removeChild(childEle);
     }
     childEle.textContent = myObj.name + " - " + myObj.email;
     childEle.appendChild(deleteChild);
+    childEle.appendChild(editChild);
     parentEle.appendChild(childEle);
     
 }
