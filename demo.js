@@ -18,9 +18,18 @@ function onSubmit(e){
        email
     };
 
-    localStorage.setItem(myObj.email,JSON.stringify(myObj));
+    axios.post("https://crudcrud.com/api/4da16926e5aa421591dbf8dcf17257a2/appointmentData",myObj)
+    .then((response)=>{
+      console.log(response);
+      showUserOnScreen(response.data);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
 
-    showUserOnScreen(myObj);
+    // localStorage.setItem(myObj.email,JSON.stringify(myObj));
+
+    // showUserOnScreen(myObj);
 }
 
 function showUserOnScreen(myObj){
