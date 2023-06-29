@@ -32,6 +32,22 @@ function onSubmit(e){
     // showUserOnScreen(myObj);
 }
 
+window.addEventListener("DOMContentLoaded",()=>{
+  const data = axios.get("https://crudcrud.com/api/4da16926e5aa421591dbf8dcf17257a2/appointmentData")
+  .then((res)=>{
+    console.log(res);
+
+    for(var i=0;i<res.data.length;i++){
+      showUserOnScreen(res.data[i]);
+    }
+  })
+  .catch((err)=>{
+    console.log(err);
+  })
+
+  // console.log(data);
+})
+
 function showUserOnScreen(myObj){
     const parentEle = document.getElementById('users');
     const childEle = document.createElement('li');
