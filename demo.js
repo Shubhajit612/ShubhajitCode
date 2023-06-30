@@ -18,7 +18,7 @@ function onSubmit(e){
        email
     };
 
-    axios.post("https://crudcrud.com/api/4da16926e5aa421591dbf8dcf17257a2/appointmentData",myObj)
+    axios.post("https://crudcrud.com/api/405b0badced64e069d82ba2dfb61121a/appointmentData",myObj)
     .then((response)=>{
       console.log(response);
       showUserOnScreen(response.data);
@@ -33,7 +33,7 @@ function onSubmit(e){
 }
 
 window.addEventListener("DOMContentLoaded",()=>{
-  const data = axios.get("https://crudcrud.com/api/4da16926e5aa421591dbf8dcf17257a2/appointmentData")
+  const data = axios.get("https://crudcrud.com/api/405b0badced64e069d82ba2dfb61121a/appointmentData")
   .then((res)=>{
     console.log(res);
 
@@ -71,8 +71,16 @@ function showUserOnScreen(myObj){
 
 
     deleteChild.onclick = () =>{
-        localStorage.removeItem(myObj.email);
-        parentEle.removeChild(childEle);
+        // localStorage.removeItem(myObj.email);
+        axios.delete(`https://crudcrud.com/api/405b0badced64e069d82ba2dfb61121a/appointmentData/${myObj._id}`)
+        .then((res)=>{
+          parentEle.removeChild(childEle);
+          // console.log(`deleted element is ${res}`);
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+        
     }
     childEle.textContent = myObj.name + " - " + myObj.email;
     childEle.appendChild(deleteChild);
